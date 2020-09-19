@@ -90,7 +90,7 @@ class FrenchToastViewController: UIViewController {
         //MARK: - label
         label.translatesAutoresizingMaskIntoConstraints = false// MAKE SURE TO ADD THIS AT ALL TIMES
         //label.top = view.safeAreatop + 40
-        constraint += [NSLayoutConstraint (item: label, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 40)]
+        constraint += [NSLayoutConstraint (item: label, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 40.0)]
         //label.leading = view.marginguide + 40
         constraint += [NSLayoutConstraint (item: label, attribute: .leading, relatedBy: .equal, toItem: view.layoutMarginsGuide, attribute: . leading, multiplier: 1.0, constant: 0)]
 
@@ -112,7 +112,7 @@ class FrenchToastViewController: UIViewController {
         constraint += [NSLayoutConstraint (item: imageView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1.0, constant: 0)]
 
         //image.button = view.safeAreatop + 20
-        constraint += [NSLayoutConstraint (item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 20)]
+        constraint += [NSLayoutConstraint (item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
 
         //MARK: - STACKVIEW
 
@@ -134,6 +134,7 @@ class FrenchToastViewController: UIViewController {
         constraint += [NSLayoutConstraint (item: orderButton, attribute: .height, relatedBy: .equal, toItem: view , attribute: .height, multiplier: 0.10, constant: 0)]
 
         constraint += [NSLayoutConstraint (item: orderButton, attribute: .height, relatedBy: .equal, toItem: backButton , attribute: .height, multiplier: 1.0, constant: 0)]
+
 
         view.addConstraints(constraint)
         
