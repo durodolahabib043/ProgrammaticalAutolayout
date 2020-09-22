@@ -96,39 +96,37 @@ class PastaViewController: UIViewController {
         label.font = label.font.withSize(72)
         orderButton.titleLabel?.font = orderButton.titleLabel?.font.withSize(64)
         backButton.titleLabel?.font = backButton.titleLabel?.font.withSize(48)
-        
-        
+
         // priorities for views
-        
-        
+
         var constraints = [NSLayoutConstraint]()
-        let layoutViews:[String:Any] = ["imageView":imageView,"label":label,"orderButton":orderButton]
-        let metrics:[String:Any] = [:]
-        let HConstraint = "H:|-10-[imageView]-10-|"
-        let VConstraint = "V:|[imageView]-10-[label]-20-[orderButton]-20-|"
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: HConstraint, options: .alignAllCenterY, metrics: metrics, views: layoutViews)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: VConstraint, options: .alignAllLeading, metrics: metrics, views: layoutViews)
-        
-        
-        //Constraints for Back button
-        // backButton.leading = orderButton.trailing + 10
-        constraints += [NSLayoutConstraint(item: backButton, attribute: .leading, relatedBy: .equal, toItem: orderButton, attribute: .trailing, multiplier: 1.0, constant: 10.0)]
-        // backButton.top = orderButton.top
-        constraints += [NSLayoutConstraint(item: backButton, attribute: .top, relatedBy: .equal, toItem: orderButton, attribute: .top, multiplier: 1.0, constant: 0.0)]
-        // backButton.bottom = orderButton.bottom
-        constraints += [NSLayoutConstraint(item: backButton, attribute: .bottom, relatedBy: .equal, toItem: orderButton, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
-        // backButton.trailing = imageView.trailing
-        constraints += [NSLayoutConstraint(item: backButton, attribute: .trailing, relatedBy: .equal, toItem: imageView, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
-        // backButton.width = orderButton.width
-        constraints += [NSLayoutConstraint(item: backButton, attribute: .width, relatedBy: .equal, toItem: orderButton, attribute: .width, multiplier: 1.0, constant:0.0)]
-        // label.trailing = imageview.trailing
-         constraints += [NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: imageView, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
-        
-        
-        
+
+        let subView: [UIView] = [orderButton , backButton]
+        let orderBtnStackView = UIStackView.init(arrangedSubviews: subView)
+        orderBtnStackView.axis = .horizontal
+        orderBtnStackView.alignment = .fill
+        orderBtnStackView.distribution = .fill
+        orderBtnStackView.spacing = 10
+
+        let fullSubView: [UIView] = [imageView,label, orderBtnStackView]
+        let fullStackView = UIStackView.init(arrangedSubviews: fullSubView)
+        fullStackView.axis = .vertical
+        fullStackView.alignment = .fill
+        fullStackView.distribution = .fill
+
+        view.addSubview(fullStackView)
+        orderBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        fullStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        //leading
+        constraints += [NSLayoutConstraint.init(item: fullStackView, attribute: .leading, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1.0, constant: 0.0)]
+        constraints += [NSLayoutConstraint.init(item: fullStackView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
+        constraints += [NSLayoutConstraint.init(item: fullStackView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0.0)]
+        constraints += [NSLayoutConstraint.init(item: fullStackView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
+
         //add constraints
         NSLayoutConstraint.activate(constraints)
-    
+
     }
     
     
