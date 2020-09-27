@@ -90,7 +90,7 @@ class FrenchToastViewController: UIViewController {
         //MARK: - label
         label.translatesAutoresizingMaskIntoConstraints = false// MAKE SURE TO ADD THIS AT ALL TIMES
         //label.top = view.safeAreatop + 40
-        constraint += [NSLayoutConstraint (item: label, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 40)]
+        constraint += [NSLayoutConstraint (item: label, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 40.0)]
         //label.leading = view.marginguide + 40
         constraint += [NSLayoutConstraint (item: label, attribute: .leading, relatedBy: .equal, toItem: view.layoutMarginsGuide, attribute: . leading, multiplier: 1.0, constant: 0)]
 
@@ -112,44 +112,28 @@ class FrenchToastViewController: UIViewController {
         constraint += [NSLayoutConstraint (item: imageView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1.0, constant: 0)]
 
         //image.button = view.safeAreatop + 20
-        constraint += [NSLayoutConstraint (item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 20)]
+        constraint += [NSLayoutConstraint (item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
 
+        //MARK: - STACKVIEW
 
+        let horizontalView: [UIView] = [  backButton, orderButton]
+        let horizontalViewStackView = UIStackView.init(arrangedSubviews: horizontalView)
+        horizontalViewStackView.axis = .horizontal
+        horizontalViewStackView.alignment = .fill
+        horizontalViewStackView.distribution = .fillEqually
+        horizontalViewStackView.spacing = 10
 
+        view.addSubview(horizontalViewStackView)
+        horizontalViewStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        //MARK: - backButton
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        //backButton.leading = orderButton.trailing
-        constraint += [NSLayoutConstraint (item: backButton, attribute: .leading, relatedBy: .equal, toItem: orderButton, attribute: . trailing, multiplier: 1.0, constant: 0)]
+        constraint += [NSLayoutConstraint.init(item: horizontalViewStackView, attribute: .leading, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1.0, constant: 0.0)]
+        constraint += [NSLayoutConstraint.init(item: horizontalViewStackView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1.0, constant: 0.0)]
 
-        //backButton.trailing = label.trailing
-        constraint += [NSLayoutConstraint (item: backButton, attribute: .trailing, relatedBy: .equal, toItem: label, attribute: .trailing, multiplier: 1.0, constant: 0)]
-
-        //backButton.bottom = orderButton.top
-        constraint += [NSLayoutConstraint (item: backButton, attribute: .bottom, relatedBy: .equal, toItem: view.layoutMarginsGuide , attribute: .bottom, multiplier: 1.0, constant: 0)]
-
-        //orderButton.height = view.height * 0.10
-        constraint += [NSLayoutConstraint (item: backButton, attribute: .height, relatedBy: .equal, toItem: view , attribute: .height, multiplier: 0.10, constant: 0)]
-
-
-        //MARK: - orderButton
-        orderButton.translatesAutoresizingMaskIntoConstraints = false
-
-        //orderButton.leading = label.leading
-        constraint += [NSLayoutConstraint (item: orderButton, attribute: .leading, relatedBy: .equal, toItem: label, attribute: . leading, multiplier: 1.0, constant: 0)]
-
-        //orderButton.trailing = backButton.leading
-        constraint += [NSLayoutConstraint (item: orderButton, attribute: .trailing, relatedBy: .equal, toItem: backButton, attribute: .leading, multiplier: 1.0, constant: 0)]
-
-        //orderButton.bottom = viewMargin.bottom
-        constraint += [NSLayoutConstraint (item: orderButton, attribute: .bottom, relatedBy: .equal, toItem: view.layoutMarginsGuide , attribute: .bottom, multiplier: 1.0, constant: 0)]
-
+        constraint += [NSLayoutConstraint.init(item: horizontalViewStackView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)]
         //orderButton.height = view.height * 0.10
         constraint += [NSLayoutConstraint (item: orderButton, attribute: .height, relatedBy: .equal, toItem: view , attribute: .height, multiplier: 0.10, constant: 0)]
 
-        //orderButton.Width = backButton.Width *0.5
-        constraint += [NSLayoutConstraint (item: orderButton, attribute: .width, relatedBy: .equal, toItem: backButton , attribute: .width, multiplier: 1.0, constant: 0)]
-
+        constraint += [NSLayoutConstraint (item: orderButton, attribute: .height, relatedBy: .equal, toItem: backButton , attribute: .height, multiplier: 1.0, constant: 0)]
 
 
         view.addConstraints(constraint)
